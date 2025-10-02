@@ -1,80 +1,124 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f4f8;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f2f5; /* Warna latar belakang abu-abu muda */
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     margin: 0;
-    padding: 20px;
+    padding: 20px 10px;
+    box-sizing: border-box;
 }
 
 .chat-container {
     background: white;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    padding: 25px 20px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Bayangan lebih halus */
     width: 100%;
-    max-width: 450px;
-    max-height: 90vh;
+    max-width: 600px; /* Lebar maksimum yang nyaman */
+    max-height: 95vh;
     display: flex;
     flex-direction: column;
+    box-sizing: border-box;
 }
 
 h1 {
     text-align: center;
-    color: #4a5568;
+    color: #1a73e8; /* Biru Google */
     margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 1.8em;
 }
 
 #chat-log {
     flex-grow: 1;
     overflow-y: auto;
     margin-bottom: 15px;
-    padding: 10px;
-    border: 1px solid #e2e8f0;
-    border-radius: 8px;
-    background-color: #edf2f7;
+    padding: 15px;
+    border: none; 
+    background-color: transparent; /* Latar belakang log transparan */
+}
+
+/* Scrollbar styling for a cleaner look */
+#chat-log::-webkit-scrollbar {
+    width: 8px;
+}
+#chat-log::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 10px;
 }
 
 .pesan-user, .pesan-ai {
-    margin-bottom: 10px;
-    padding: 10px;
-    border-radius: 15px;
-    max-width: 80%;
+    margin-bottom: 12px;
+    padding: 12px 15px;
+    border-radius: 20px;
+    max-width: 90%;
     word-wrap: break-word;
+    line-height: 1.4;
 }
 
 .pesan-user {
-    margin-left: auto; /* Agar pesan berada di kanan */
-    background-color: #4299e1;
+    margin-left: auto;
+    background-color: #1a73e8; /* Biru terang */
     color: white;
-    border-bottom-right-radius: 0;
+    border-top-right-radius: 5px;
+    box-shadow: 0 2px 5px rgba(26, 115, 232, 0.2);
 }
 
 .pesan-ai {
-    margin-right: auto; /* Agar pesan berada di kiri */
-    background-color: #ffffff;
-    border: 1px solid #cbd5e0;
-    color: #2d3748;
-    border-bottom-left-radius: 0;
+    margin-right: auto;
+    background-color: #e5e7eb; /* Abu-abu sangat muda */
+    color: #374151;
+    border: 1px solid #d1d5db;
+    border-top-left-radius: 5px;
+}
+
+.input-area {
+    display: flex;
+    gap: 10px;
+    padding-top: 10px;
 }
 
 #user-input {
-    width: 100%;
+    flex-grow: 1;
     padding: 12px;
-    border: 1px solid #cbd5e0;
-    border-radius: 8px;
-    box-sizing: border-box;
-    margin-bottom: 10px;
+    border: 1px solid #d1d5eb;
+    border-radius: 25px;
+    font-size: 1em;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+#user-input:focus {
+    border-color: #1a73e8;
 }
 
 button {
-    background-color: #4c51bf;
+    background-color: #1a73e8;
     color: white;
     border: none;
-    padding: 12px;
-    border-radius: 8px;
+    padding: 0 15px; /* Sesuaikan padding */
+    border-radius: 25px;
     cursor: pointer;
-    font-weight: bold;
+    font-weight: 600;
+    transition: background-color 0.3s, transform 0.1s;
+    height: 44px; /* Samakan tinggi dengan input */
+}
+
+button:hover {
+    background-color: #1565c0;
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+@media (max-width: 480px) {
+    .chat-container {
+        padding: 15px;
+        border-radius: 0; /* Full screen di HP */
+        min-height: 100vh;
+        max-height: none;
+    }
 }
