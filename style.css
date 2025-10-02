@@ -1,0 +1,80 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f4f8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+}
+
+.chat-container {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 450px;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+}
+
+h1 {
+    text-align: center;
+    color: #4a5568;
+    margin-top: 0;
+}
+
+#chat-log {
+    flex-grow: 1;
+    overflow-y: auto;
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    background-color: #edf2f7;
+}
+
+.pesan-user, .pesan-ai {
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 15px;
+    max-width: 80%;
+    word-wrap: break-word;
+}
+
+.pesan-user {
+    margin-left: auto; /* Agar pesan berada di kanan */
+    background-color: #4299e1;
+    color: white;
+    border-bottom-right-radius: 0;
+}
+
+.pesan-ai {
+    margin-right: auto; /* Agar pesan berada di kiri */
+    background-color: #ffffff;
+    border: 1px solid #cbd5e0;
+    color: #2d3748;
+    border-bottom-left-radius: 0;
+}
+
+#user-input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #cbd5e0;
+    border-radius: 8px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
+
+button {
+    background-color: #4c51bf;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
