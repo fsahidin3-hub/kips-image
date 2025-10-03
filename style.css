@@ -82,7 +82,7 @@ h1 {
 
 .input-area-gemini {
     display: flex;
-    align-items: flex-end; /* Disamakan dengan tombol kirim */
+    align-items: flex-end; /* Semua elemen ditarik ke bawah */
     padding: 8px 10px; 
     background-color: #f0f2f5; 
     border-top: 1px solid #e0e0e0;
@@ -111,7 +111,7 @@ h1 {
 /* KOTAK INPUT UTAMA */
 #user-input {
     flex-grow: 1;
-    padding: 10px 45px 10px 15px; /* PADDING KANAN DIBERIKAN RUANG UNTUK IKON MIKROFON */
+    padding: 10px 45px 10px 15px; /* PADDING KANAN DIBERI RUANG UNTUK IKON MIKROFON */
     border: none;
     border-radius: 25px; 
     font-size: 1em;
@@ -170,3 +170,20 @@ h1 {
 
 /* Hapus tombol-tombol yang tidak terpakai */
 .mic-btn-outside { display: none; }
+
+
+/* Media Query untuk Desktop */
+@media (min-width: 650px) {
+    .chat-container {
+        height: 80vh; 
+        border-radius: 16px; 
+        margin-bottom: 5vh;
+        align-self: center; 
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    }
+    body {
+        align-items: center; 
+        position: static; 
+        min-height: 100vh;
+    }
+}
