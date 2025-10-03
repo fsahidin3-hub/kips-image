@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chatbot AI Gemini</title>
     <link rel="stylesheet" href="style.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body id="app-body">
 
@@ -16,9 +18,18 @@
             <div class="pesan-ai">Selamat datang kembali! Saya adalah asisten AI yang ditenagai Gemini. Tanyakan apa saja yang Anda butuhkan (menulis, ide, kode, dll.).</div>
         </div>
         
-        <div class="input-area">
-            <input type="text" id="user-input" placeholder="Tanyakan apa saja di sini...">
-            <button onclick="kirimPesan()">Kirim</button>
+        <div class="input-area-gemini">
+            <div class="gemini-controls">
+                <button class="icon-btn" title="Tambah Media"><i class="fas fa-plus"></i></button>
+                <button class="icon-btn" title="Pengaturan Model"><i class="fas fa-sliders-h"></i></button>
+            </div>
+            
+            <input type="text" id="user-input" placeholder="Minta Gemini...">
+            
+            <div class="gemini-action">
+                <button class="icon-btn" onclick="kirimPesan()" title="Kirim"><i class="fas fa-paper-plane"></i></button>
+                <button class="icon-btn mic-btn" title="Mikrofon"><i class="fas fa-microphone"></i></button>
+            </div>
         </div>
     </div>
 
