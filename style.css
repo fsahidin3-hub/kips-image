@@ -107,7 +107,437 @@ h1 {
     box-shadow: 0 1px 3px rgba(0,0,0,0.1); 
     height: 48px;
     
+    padding-right: 5px;/* /* Pastikan semua elemen menghitung padding dan border */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f2f5; 
+    display: flex;
+    justify-content: center;
+    align-items: flex-end; 
+    
+    /* FIX FULLSCREEN UNTUK HP */
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    min-height: 100%;
+    
+    margin: 0;
+}
+
+.chat-container {
+    background: white;
+    border-radius: 16px 16px 0 0; 
+    box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.1); 
+    width: 100%;
+    max-width: 650px; 
+    height: 100%; 
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    
+    position: relative;
+    overflow: hidden;
+}
+
+/* Styling Header H1 */
+h1 {
+    text-align: center;
+    color: #1a73e8; 
+    padding: 15px;
+    margin: 0;
+    border-bottom: 1px solid #e0e0e0;
+    font-size: 1.8em; 
+}
+
+#chat-log {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 20px;
+}
+
+/* Styling Pesan */
+.pesan-user, .pesan-ai {
+    margin-bottom: 12px;
+    padding: 12px 15px;
+    border-radius: 20px;
+    max-width: 90%;
+    word-wrap: break-word;
+    line-height: 1.4;
+}
+
+.pesan-user {
+    margin-left: auto; 
+    background-color: #1a73e8; 
+    color: white;
+    border-top-right-radius: 5px;
+}
+
+.pesan-ai {
+    margin-right: auto;
+    background-color: #e5e7eb; 
+    color: #374151;
+    border: 1px solid #d1d5db;
+    border-top-left-radius: 5px;
+}
+
+
+/* --- TAMPILAN INPUT ALA GEMINI (KOREKSI SUDUT AKHIR) --- */
+
+.input-area-gemini {
+    display: flex;
+    align-items: center; 
+    padding: 8px 10px; /* Padding luar dikembalikan ke 10px */
+    background-color: #f0f2f5; 
+    border-top: 1px solid #e0e0e0;
+    width: 100%; 
+}
+
+.gemini-controls {
+    display: flex;
+    align-items: center; 
     padding-right: 5px; 
+    flex-shrink: 0; 
+}
+
+/* CONTAINER BARU UNTUK INPUT DAN ICON KANAN */
+.input-wrapper {
+    position: relative;
+    flex-grow: 1;
+    display: flex; 
+    align-items: center;
+    background-color: white;
+    border-radius: 25px; /* PASTIKAN SUDUT MELENGKUNG PENUH */
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1); 
+    height: 48px;
+    
+    padding-right: 5px; 
+    /* PENTING: TAMBAHKAN OVERFLOW: HIDDEN UNTUK MEMASTIKAN SUDUT RAPI */
+    overflow: hidden; 
+}
+
+/* KOTAK INPUT UTAMA */
+#user-input {
+    flex-grow: 1;
+    /* PADDING KANAN CUKUP UNTUK DUA IKON */
+    padding: 10px 85px 10px 15px; 
+    border: none;
+    border-radius: 25px; /* Ini hanya untuk memastikan jika input keluar dari wrapper */
+    font-size: 1em;
+    outline: none;
+    background-color: transparent; 
+    height: 48px;
+}
+
+/* IKON UMUM */
+.icon-btn {
+    background: none;
+    border: none;
+    color: #555; 
+    cursor: pointer;
+    font-size: 1.0em; 
+    padding: 6px; 
+    border-radius: 50%; 
+    transition: background-color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 38px; 
+    width: 38px; 
+    flex-shrink: 0; 
+}
+
+.icon-btn:hover {
+    background-color: #e6e6fa;
+}
+
+/* MIKROFON DI DALAM KOTAK PUTIH */
+.mic-btn-inside {
+    position: absolute; 
+    right: 5px; 
+    color: #4c51bf;
+    height: 38px; 
+    width: 38px;
+    z-index: 5;
+}
+
+/* TOMBOL KIRIM DI DALAM KOTAK PUTIH */
+.input-send-btn {
+    position: absolute; 
+    right: 10px; 
+    color: #1a73e8; 
+    font-size: 1.1em;
+    height: 38px;
+    width: 38px;
+    z-index: 5;
+}
+
+/* Hapus tombol-tombol yang tidak terpakai */
+.action-send-btn, .mic-btn-outside { display: none !important; }
+
+
+/* Media Query untuk Desktop */
+@media (min-width: 650px) {
+    .chat-container {
+        height: 80vh; 
+        border-radius: 16px; 
+        margin-bottom: 5vh;
+        align-self: center; 
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    }
+    body {
+        align-items: center; 
+        position: static; 
+        min-height: 100vh;
+    }
+}/* STYLING BARU UNTUK PREVIEW GAMBAR */
+.image-preview-placeholder {
+    position: absolute;
+    right: 50px; /* Posisikan di sebelah kanan input */
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    z-index: 10;
+    padding-right: 5px;
+}
+
+.image-preview-placeholder i.fas.fa-image {
+    color: #4c51bf; /* Warna biru untuk ikon gambar */
+    font-size: 1.2em;
+}
+
+#remove-image {
+    color: #d32f2f; /* Warna merah untuk tombol hapus */
+    cursor: pointer;
+    font-size: 1.1em;
+}
+
+/* KOREKSI INPUT AGAR ADA RUANG UNTUK PREVIEW */
+/* Anda mungkin perlu menyesuaikan padding kanan #user-input di file CSS Anda 
+   agar ikon Mikrofon tidak menimpa ikon preview baru ini. 
+   Pastikan padding kanan #user-input cukup besar (sekitar 80px) */ semua elemen menghitung padding dan border */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f2f5; 
+    display: flex;
+    justify-content: center;
+    align-items: flex-end; 
+    
+    /* FIX FULLSCREEN UNTUK HP */
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    min-height: 100%;
+    
+    margin: 0;
+}
+
+.chat-container {
+    background: white;
+    border-radius: 16px 16px 0 0; 
+    box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.1); 
+    width: 100%;
+    max-width: 650px; 
+    height: 100%; 
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    
+    position: relative;
+    overflow: hidden;
+}
+
+/* Styling Header H1 */
+h1 {
+    text-align: center;
+    color: #1a73e8; 
+    padding: 15px;
+    margin: 0;
+    border-bottom: 1px solid #e0e0e0;
+    font-size: 1.8em; 
+}
+
+#chat-log {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 20px;
+}
+
+/* Styling Pesan */
+.pesan-user, .pesan-ai {
+    margin-bottom: 12px;
+    padding: 12px 15px;
+    border-radius: 20px;
+    max-width: 90%;
+    word-wrap: break-word;
+    line-height: 1.4;
+}
+
+.pesan-user {
+    margin-left: auto; 
+    background-color: #1a73e8; 
+    color: white;
+    border-top-right-radius: 5px;
+}
+
+.pesan-ai {
+    margin-right: auto;
+    background-color: #e5e7eb; 
+    color: #374151;
+    border: 1px solid #d1d5db;
+    border-top-left-radius: 5px;
+}
+
+
+/* --- TAMPILAN INPUT ALA GEMINI (KOREKSI SUDUT AKHIR) --- */
+
+.input-area-gemini {
+    display: flex;
+    align-items: center; 
+    padding: 8px 10px; /* Padding luar dikembalikan ke 10px */
+    background-color: #f0f2f5; 
+    border-top: 1px solid #e0e0e0;
+    width: 100%; 
+}
+
+.gemini-controls {
+    display: flex;
+    align-items: center; 
+    padding-right: 5px; 
+    flex-shrink: 0; 
+}
+
+/* CONTAINER BARU UNTUK INPUT DAN ICON KANAN */
+.input-wrapper {
+    position: relative;
+    flex-grow: 1;
+    display: flex; 
+    align-items: center;
+    background-color: white;
+    border-radius: 25px; /* PASTIKAN SUDUT MELENGKUNG PENUH */
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1); 
+    height: 48px;
+    
+    padding-right: 5px; 
+    /* PENTING: TAMBAHKAN OVERFLOW: HIDDEN UNTUK MEMASTIKAN SUDUT RAPI */
+    overflow: hidden; 
+}
+
+/* KOTAK INPUT UTAMA */
+#user-input {
+    flex-grow: 1;
+    /* PADDING KANAN CUKUP UNTUK DUA IKON */
+    padding: 10px 85px 10px 15px; 
+    border: none;
+    border-radius: 25px; /* Ini hanya untuk memastikan jika input keluar dari wrapper */
+    font-size: 1em;
+    outline: none;
+    background-color: transparent; 
+    height: 48px;
+}
+
+/* IKON UMUM */
+.icon-btn {
+    background: none;
+    border: none;
+    color: #555; 
+    cursor: pointer;
+    font-size: 1.0em; 
+    padding: 6px; 
+    border-radius: 50%; 
+    transition: background-color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 38px; 
+    width: 38px; 
+    flex-shrink: 0; 
+}
+
+.icon-btn:hover {
+    background-color: #e6e6fa;
+}
+
+/* MIKROFON DI DALAM KOTAK PUTIH */
+.mic-btn-inside {
+    position: absolute; 
+    right: 5px; 
+    color: #4c51bf;
+    height: 38px; 
+    width: 38px;
+    z-index: 5;
+}
+
+/* TOMBOL KIRIM DI DALAM KOTAK PUTIH */
+.input-send-btn {
+    position: absolute; 
+    right: 10px; 
+    color: #1a73e8; 
+    font-size: 1.1em;
+    height: 38px;
+    width: 38px;
+    z-index: 5;
+}
+
+/* Hapus tombol-tombol yang tidak terpakai */
+.action-send-btn, .mic-btn-outside { display: none !important; }
+
+
+/* Media Query untuk Desktop */
+@media (min-width: 650px) {
+    .chat-container {
+        height: 80vh; 
+        border-radius: 16px; 
+        margin-bottom: 5vh;
+        align-self: center; 
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    }
+    body {
+        align-items: center; 
+        position: static; 
+        min-height: 100vh;
+    }
+}/* STYLING BARU UNTUK PREVIEW GAMBAR */
+.image-preview-placeholder {
+    position: absolute;
+    right: 40px; /* Posisikan di sebelah kanan input */
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    z-index: 10;
+    padding-right: 5px;
+}
+
+.image-preview-placeholder i.fas.fa-image {
+    color: #4c51bf; /* Warna biru untuk ikon gambar */
+    font-size: 1.2em;
+}
+
+#remove-image {
+    color: #d32f2f; /* Warna merah untuk tombol hapus */
+    cursor: pointer;
+    font-size: 1.1em;
+}
+
+/* KOREKSI INPUT AGAR ADA RUANG UNTUK PREVIEW */
+/* Anda mungkin perlu menyesuaikan padding kanan #user-input di file CSS Anda 
+   agar ikon Mikrofon tidak menimpa ikon preview baru ini. 
+   Pastikan padding kanan #user-input cukup besar (sekitar 80px) */
     /* PENTING: TAMBAHKAN OVERFLOW: HIDDEN UNTUK MEMASTIKAN SUDUT RAPI */
     overflow: hidden; 
 }
