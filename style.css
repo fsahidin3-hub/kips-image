@@ -40,10 +40,8 @@ h1 {
     padding: 15px;
     margin: 0;
     border-bottom: 1px solid #e0e0e0;
-    font-size: 1.8em; /* Ukuran teks yang nyaman */
+    font-size: 1.8em; 
 }
-
-/* KODE LAMA UNTUK LOGO SUDAH DIHAPUS */
 
 #chat-log {
     flex-grow: 1;
@@ -81,37 +79,70 @@ h1 {
     border-top-left-radius: 5px;
 }
 
-
-/* Area Input (Paling Bawah) */
-.input-area {
+/* --- Tampilan Input ALA GEMINI --- */
+.input-area-gemini {
     display: flex;
-    gap: 10px;
-    padding: 15px; 
+    align-items: center;
+    padding: 15px;
+    background-color: #f0f2f5; /* Latar belakang abu-abu muda di luar input */
     border-top: 1px solid #e0e0e0;
-    background-color: #f7f7f7;
+}
+
+.gemini-controls, .gemini-action {
+    display: flex;
+    gap: 5px;
+    padding: 0 5px;
 }
 
 #user-input {
     flex-grow: 1;
-    padding: 12px;
-    border: 1px solid #d1d5eb;
-    border-radius: 25px;
+    padding: 15px 10px;
+    border: none; 
+    border-radius: 25px; 
     font-size: 1em;
     outline: none;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1); 
+    background-color: white;
 }
 
-button {
-    background-color: #1a73e8;
-    color: white;
+.icon-btn {
+    background: none;
     border: none;
-    padding: 0 15px; 
-    border-radius: 25px;
+    color: #4c51bf; 
     cursor: pointer;
-    font-weight: 600;
-    height: 44px;
+    font-size: 1.2em;
+    padding: 8px;
+    border-radius: 50%; 
+    transition: background-color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    width: 40px;
 }
 
-/* Media Query untuk Desktop: Jika layar lebih besar, chat box di tengah */
+.icon-btn:hover {
+    background-color: #e6e6fa;
+}
+
+/* Styling Khusus untuk Ikon Kirim (Paper Plane) */
+.gemini-action .icon-btn:first-child {
+    background-color: #1a73e8; 
+    color: white;
+    font-size: 1em;
+}
+
+.gemini-action .icon-btn:first-child:hover {
+    background-color: #1565c0;
+}
+
+/* Styling Mikrofon */
+.mic-btn {
+    color: #555; 
+    font-size: 1.2em;
+}
+
+/* Media Query untuk Desktop */
 @media (min-width: 650px) {
     .chat-container {
         height: 80vh; 
