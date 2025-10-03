@@ -88,16 +88,16 @@ h1 {
 .input-area-gemini {
     display: flex;
     align-items: center;
-    padding: 10px 15px; /* Kurangi padding luar */
+    padding: 10px 8px; /* Padding luar dikurangi agar elemen kanan muat */
     background-color: #f0f2f5; 
     border-top: 1px solid #e0e0e0;
-    width: 100%; /* Pastikan mengisi lebar penuh */
+    width: 100%; 
 }
 
 .gemini-controls, .gemini-action {
     display: flex;
-    align-items: center; /* Pusatkan item */
-    gap: 0; /* Kurangi gap untuk menempelkan ikon ke input */
+    align-items: center; 
+    gap: 0px; /* Ikon kiri menempel */
 }
 
 /* KOTAK INPUT UTAMA */
@@ -111,8 +111,8 @@ h1 {
     box-shadow: 0 1px 3px rgba(0,0,0,0.1); 
     background-color: white;
     
-    /* PENTING: Tambahkan margin horizontal agar ada jarak antara input dan ikon */
-    margin: 0 10px; 
+    /* MARGIN DIKOREKSI: Jarak kiri dan kanan input dengan ikon */
+    margin: 0 8px; 
     height: 48px;
 }
 
@@ -131,13 +131,11 @@ h1 {
     justify-content: center;
     height: 40px;
     width: 40px;
-    flex-shrink: 0; /* PENTING: Mencegah tombol menyusut */
+    flex-shrink: 0; 
 }
 
-/* PERBAIKAN UNTUK KONTROL KIRI */
-.gemini-controls .icon-btn {
-    color: #555;
-    font-size: 1.1em;
+.icon-btn:hover {
+    background-color: #e6e6fa;
 }
 
 /* PERBAIKAN UNTUK IKON KIRIM (Kanan) */
@@ -145,9 +143,10 @@ h1 {
     background-color: #1a73e8; 
     color: white;
     font-size: 1.1em;
-    height: 48px;
+    height: 48px; /* Ukuran Tombol Kirim lebih besar */
     width: 48px;
     border-radius: 50%; 
+    margin-right: 5px; /* Jarak antara tombol kirim dan mikrofon */
 }
 
 .gemini-action .icon-btn:first-child:hover {
@@ -158,7 +157,10 @@ h1 {
 .mic-btn {
     color: #555; 
     font-size: 1.2em;
-    margin-left: 5px;
+    /* Margin kiri dihapus karena sudah ada di tombol kirim */
+    margin-right: 0; 
+    width: 35px; /* Sedikit lebih kecil agar muat */
+    height: 35px;
 }
 
 /* Media Query untuk Desktop */
