@@ -78,12 +78,12 @@ h1 {
 }
 
 
-/* --- TAMPILAN INPUT ALA GEMINI (FINAL) --- */
+/* --- TAMPILAN INPUT ALA GEMINI (FINAL KOREKSI) --- */
 
 .input-area-gemini {
     display: flex;
-    align-items: center;
-    padding: 8px 10px; /* Padding luar diatur ulang */
+    align-items: flex-end; /* Disamakan dengan tombol kirim */
+    padding: 8px 10px; 
     background-color: #f0f2f5; 
     border-top: 1px solid #e0e0e0;
     width: 100%; 
@@ -93,10 +93,10 @@ h1 {
     display: flex;
     align-items: center; 
     padding-right: 5px; 
-    flex-shrink: 0;
+    flex-shrink: 0; 
 }
 
-/* CONTAINER BARU UNTUK INPUT DAN ICON KANAN */
+/* CONTAINER BARU UNTUK INPUT DAN ICON MIKROFON */
 .input-wrapper {
     position: relative;
     flex-grow: 1;
@@ -111,7 +111,7 @@ h1 {
 /* KOTAK INPUT UTAMA */
 #user-input {
     flex-grow: 1;
-    padding: 10px 85px 10px 15px; /* PADDING KANAN CUKUP BESAR UNTUK DUA IKON DI DALAM */
+    padding: 10px 45px 10px 15px; /* PADDING KANAN DIBERIKAN RUANG UNTUK IKON MIKROFON */
     border: none;
     border-radius: 25px; 
     font-size: 1em;
@@ -142,41 +142,31 @@ h1 {
     background-color: #e6e6fa;
 }
 
-/* STYLING TOMBOL KIRIM DAN MIKROFON DI DALAM INPUT */
-.input-send-btn, .mic-btn-inside {
+/* MIKROFON DI DALAM KOTAK PUTIH */
+.mic-btn-inside {
     position: absolute; 
-    height: 38px;
+    right: 5px; 
+    color: #4c51bf;
+    height: 38px; 
     width: 38px;
     z-index: 5;
 }
 
-.mic-btn-inside {
-    right: 5px; 
-    color: #4c51bf;
-}
-
-.input-send-btn {
-    right: 45px; 
-    color: #1a73e8; 
+/* TOMBOL KIRIM DI LUAR KOTAK PUTIH */
+.action-send-btn {
+    background-color: #1a73e8; 
+    color: white;
     font-size: 1.1em;
+    height: 48px; 
+    width: 48px;
+    border-radius: 50%; 
+    flex-shrink: 0;
+    margin-left: 8px; /* Jarak antara kotak input dan tombol kirim */
 }
 
-/* Hapus tombol-tombol yang tidak terpakai (karena sudah diganti inline) */
-.action-send-btn, .mic-btn-outside { display: none; }
-
-
-/* Media Query untuk Desktop: Semua harus di tengah dan rapi */
-@media (min-width: 650px) {
-    .chat-container {
-        height: 80vh; 
-        border-radius: 16px; 
-        margin-bottom: 5vh;
-        align-self: center; 
-        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-    }
-    body {
-        align-items: center; 
-        position: static; 
-        min-height: 100vh;
-    }
+.action-send-btn:hover {
+    background-color: #1565c0;
 }
+
+/* Hapus tombol-tombol yang tidak terpakai */
+.mic-btn-outside { display: none; }
