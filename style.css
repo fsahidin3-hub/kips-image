@@ -78,11 +78,11 @@ h1 {
 }
 
 
-/* --- TAMPILAN INPUT ALA GEMINI (FINAL KOREKSI) --- */
+/* --- TAMPILAN INPUT ALA GEMINI (KOREKSI FINAL) --- */
 
 .input-area-gemini {
     display: flex;
-    align-items: flex-end; /* Semua elemen ditarik ke bawah */
+    align-items: flex-end; 
     padding: 8px 10px; 
     background-color: #f0f2f5; 
     border-top: 1px solid #e0e0e0;
@@ -106,6 +106,9 @@ h1 {
     border-radius: 25px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.1); 
     height: 48px;
+    
+    /* PENTING: Mengurangi padding di dalam wrapper agar ikon Kirim muat di luar */
+    padding-right: 5px; 
 }
 
 /* KOTAK INPUT UTAMA */
