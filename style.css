@@ -78,12 +78,12 @@ h1 {
 }
 
 
-/* --- TAMPILAN INPUT ALA GEMINI DENGAN ACTION VERTIKAL --- */
+/* --- TAMPILAN INPUT ALA GEMINI --- */
 
 .input-area-gemini {
     display: flex;
     align-items: center;
-    padding: 8px 5px; /* PADDING LUAR DIKECILKAN */
+    padding: 8px 10px; /* Padding luar diatur ulang */
     background-color: #f0f2f5; 
     border-top: 1px solid #e0e0e0;
     width: 100%; 
@@ -93,16 +93,6 @@ h1 {
     display: flex;
     align-items: center; 
     padding-right: 5px; 
-}
-
-/* PENTING: ACTION KANAN DIUBAH KE VERTICAL */
-.gemini-action-vertikal {
-    display: flex;
-    flex-direction: column; /* Tata letak VERTICAL */
-    align-items: center;
-    gap: 2px; /* Jarak vertikal antar tombol */
-    padding-left: 5px; /* Jarak dari input */
-    flex-shrink: 0; /* Mencegah kolom tombol ikut menyusut */
 }
 
 /* KOTAK INPUT UTAMA */
@@ -116,10 +106,9 @@ h1 {
     box-shadow: 0 1px 3px rgba(0,0,0,0.1); 
     background-color: white;
     
-    margin: 0 5px;
+    margin: 0 8px 0 5px; /* Margin horizontal input disesuaikan */
     height: 48px;
 }
-
 
 .icon-btn {
     background: none;
@@ -127,14 +116,14 @@ h1 {
     color: #555; 
     cursor: pointer;
     font-size: 1.0em; 
-    padding: 5px; 
+    padding: 6px; 
     border-radius: 50%; 
     transition: background-color 0.2s;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 32px; 
-    width: 32px; 
+    height: 38px; 
+    width: 38px; 
     flex-shrink: 0; 
 }
 
@@ -142,36 +131,45 @@ h1 {
     background-color: #e6e6fa;
 }
 
-/* Ikon Kontrol Kiri */
-.gemini-controls .icon-btn {
-    color: #4c51bf; 
-}
-
-/* Styling Tombol Kirim (Bawah) */
+/* Styling Tombol Kirim */
 .action-send-btn {
     background-color: #1a73e8; 
     color: white;
     font-size: 1.1em;
-    height: 40px; 
-    width: 40px;
+    height: 48px; 
+    width: 48px;
     border-radius: 50%; 
-    margin-top: 5px;
+    flex-shrink: 0;
+    margin-right: 0; /* Pastikan tombol kirim menempel ke kanan input area */
 }
 
 .action-send-btn:hover {
     background-color: #1565c0;
 }
 
-/* Styling Mikrofon (Atas) */
-.mic-btn {
-    color: #555; 
-    font-size: 1.0em; 
-    width: 35px; 
-    height: 35px;
+/* STYLING PENTING: TOMBOL MIKROFON DI LUAR (POSISI MENGAMBANG) */
+.mic-btn-outside {
+    position: fixed; /* Membuat posisi tidak terpengaruh scroll */
+    right: 15px; /* Jarak dari kanan */
+    bottom: 75px; /* Jarak dari bawah, di atas input area */
+    z-index: 100; /* Pastikan selalu di atas elemen lain */
+    
+    /* Styling agar terlihat keren */
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    color: #4c51bf;
+    height: 50px;
+    width: 50px;
+    font-size: 1.3em;
 }
 
-/* Media Query untuk Desktop */
+
+/* Media Query untuk Desktop: Hilangkan tombol mikrofon luar di desktop */
 @media (min-width: 650px) {
+    .mic-btn-outside {
+        display: none; 
+    }
+    
     .chat-container {
         height: 80vh; 
         border-radius: 16px; 
