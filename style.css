@@ -78,7 +78,7 @@ h1 {
 }
 
 
-/* --- PERBAIKAN TAMPILAN INPUT ALA GEMINI (RESPONSIVE) --- */
+/* --- TAMPILAN INPUT ALA GEMINI DENGAN ACTION VERTIKAL --- */
 
 .input-area-gemini {
     display: flex;
@@ -92,13 +92,17 @@ h1 {
 .gemini-controls {
     display: flex;
     align-items: center; 
-    padding-right: 5px; /* Jarak antara ikon kiri dan input */
+    padding-right: 5px; 
 }
 
-.gemini-action {
+/* PENTING: ACTION KANAN DIUBAH KE VERTICAL */
+.gemini-action-vertikal {
     display: flex;
+    flex-direction: column; /* Tata letak VERTICAL */
     align-items: center;
-    /* PENTING: JANGAN ADA PADDING KIRI DI SINI UNTUK MENGHEMAT RUANG */
+    gap: 2px; /* Jarak vertikal antar tombol */
+    padding-left: 5px; /* Jarak dari input */
+    flex-shrink: 0; /* Mencegah kolom tombol ikut menyusut */
 }
 
 /* KOTAK INPUT UTAMA */
@@ -112,7 +116,7 @@ h1 {
     box-shadow: 0 1px 3px rgba(0,0,0,0.1); 
     background-color: white;
     
-    margin: 0 5px; /* Jarak horizontal input dikurangi */
+    margin: 0 5px;
     height: 48px;
 }
 
@@ -122,14 +126,14 @@ h1 {
     border: none;
     color: #555; 
     cursor: pointer;
-    font-size: 1.0em; /* UKURAN IKON KIRI DIKECILKAN LAGI */
-    padding: 5px; /* PADDING IKON KIRI DIKECILKAN LAGI */
+    font-size: 1.0em; 
+    padding: 5px; 
     border-radius: 50%; 
     transition: background-color 0.2s;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 32px; /* UKURAN TOMBOL IKON KIRI DIKECILKAN */
+    height: 32px; 
     width: 32px; 
     flex-shrink: 0; 
 }
@@ -138,26 +142,30 @@ h1 {
     background-color: #e6e6fa;
 }
 
-/* PERBAIKAN UNTUK IKON KIRIM (Kanan) */
-.gemini-action .icon-btn:first-child {
+/* Ikon Kontrol Kiri */
+.gemini-controls .icon-btn {
+    color: #4c51bf; 
+}
+
+/* Styling Tombol Kirim (Bawah) */
+.action-send-btn {
     background-color: #1a73e8; 
     color: white;
     font-size: 1.1em;
-    height: 48px; 
-    width: 48px;
+    height: 40px; 
+    width: 40px;
     border-radius: 50%; 
-    margin-right: 5px; /* Jarak tombol kirim dan mikrofon */
+    margin-top: 5px;
 }
 
-.gemini-action .icon-btn:first-child:hover {
+.action-send-btn:hover {
     background-color: #1565c0;
 }
 
-/* Styling Mikrofon */
+/* Styling Mikrofon (Atas) */
 .mic-btn {
     color: #555; 
-    font-size: 1.1em; /* UKURAN MIKROFON DIKECILKAN */
-    margin-right: 0; 
+    font-size: 1.0em; 
     width: 35px; 
     height: 35px;
 }
