@@ -8,21 +8,32 @@ body {
     background-color: #f0f2f5; 
     display: flex;
     justify-content: center;
-    align-items: flex-end; /* Taruh chat container di bagian bawah (agar input selalu terlihat) */
-    min-height: 100vh;
+    align-items: flex-end; 
+    
+    /* FIX FULLSCREEN UNTUK HP */
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    min-height: 100%;
+    
     margin: 0;
 }
 
 .chat-container {
     background: white;
-    border-radius: 16px 16px 0 0; /* Bulatkan hanya bagian atas untuk kesan 'fixed' di HP */
+    border-radius: 16px 16px 0 0; 
     box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.1); 
     width: 100%;
     max-width: 650px; /* Batas maksimum untuk tampilan desktop */
-    height: 95vh; /* Menggunakan hampir seluruh tinggi layar di HP */
+    height: 100%; /* Mengisi penuh tinggi body yang sudah di-fix */
     display: flex;
     flex-direction: column;
-    padding: 0; /* Hilangkan padding luar agar rapi */
+    padding: 0;
+    
+    position: relative;
+    overflow: hidden;
 }
 
 h1 {
@@ -69,15 +80,6 @@ h1 {
     border-top-left-radius: 5px;
 }
 
-.hasil-gambar {
-    max-width: 100%;
-    height: auto;
-    border-radius: 12px;
-    margin-top: 5px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    display: block; 
-}
-
 
 /* Area Input (Paling Bawah) */
 .input-area {
@@ -119,5 +121,8 @@ button {
     }
     body {
         align-items: center; /* Taruh di tengah layar */
+        /* Hapus properti absolute di desktop agar scroll normal */
+        position: static; 
+        min-height: 100vh;
     }
 }
