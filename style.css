@@ -189,7 +189,7 @@ h1 {
 }/* STYLING BARU UNTUK PREVIEW GAMBAR */
 .image-preview-placeholder {
     position: absolute;
-    right: 5px; /* Posisikan di sebelah kanan input */
+    right: 50px; /* Posisikan di sebelah kanan input */
     top: 50%;
     transform: translateY(-50%);
     display: flex;
