@@ -46,7 +46,7 @@ body {
 }
 
 .header-logo img {
-    max-height: 75px; /* UKURAN LOGO LEBIH BESAR */
+    max-height: 220px; /* UKURAN LOGO LEBIH BESAR */
     width: auto;
     vertical-align: middle; 
 }
