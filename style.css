@@ -160,7 +160,7 @@ h1 {
 /* TOMBOL KIRIM DI DALAM KOTAK PUTIH */
 .input-send-btn {
     position: absolute; 
-    right: 45px; 
+    right: 10px; 
     color: #1a73e8; 
     font-size: 1.1em;
     height: 38px;
