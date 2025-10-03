@@ -46,7 +46,7 @@ body {
 }
 
 .header-logo img {
-    max-height: 40px; 
+    max-height: 60px; /* NILAI BARU UNTUK MEMPERBESAR LOGO */
     width: auto;
     vertical-align: middle; 
 }
