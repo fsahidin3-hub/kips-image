@@ -1,54 +1,50 @@
+/* Pastikan semua elemen menghitung padding dan border */
+* {
+    box-sizing: border-box;
+}
+
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f0f2f5; /* Warna latar belakang abu-abu muda */
+    background-color: #f0f2f5; 
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end; /* Taruh chat container di bagian bawah (agar input selalu terlihat) */
     min-height: 100vh;
     margin: 0;
-    padding: 20px 10px;
-    box-sizing: border-box;
 }
 
 .chat-container {
     background: white;
-    padding: 25px 20px;
-    border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Bayangan lebih halus */
+    border-radius: 16px 16px 0 0; /* Bulatkan hanya bagian atas untuk kesan 'fixed' di HP */
+    box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.1); 
     width: 100%;
-    max-width: 600px; /* Lebar maksimum yang nyaman */
-    max-height: 95vh;
+    max-width: 650px; /* Batas maksimum untuk tampilan desktop */
+    height: 95vh; /* Menggunakan hampir seluruh tinggi layar di HP */
     display: flex;
     flex-direction: column;
-    box-sizing: border-box;
+    padding: 0; /* Hilangkan padding luar agar rapi */
 }
 
 h1 {
     text-align: center;
-    color: #1a73e8; /* Biru Google */
-    margin-top: 0;
-    margin-bottom: 20px;
-    font-size: 1.8em;
+    color: #1a73e8; 
+    padding: 15px;
+    margin: 0;
+    border-bottom: 1px solid #e0e0e0;
 }
 
 #chat-log {
     flex-grow: 1;
     overflow-y: auto;
-    margin-bottom: 15px;
-    padding: 15px;
-    border: none; 
-    background-color: transparent; /* Latar belakang log transparan */
+    padding: 20px;
 }
 
-/* Scrollbar styling for a cleaner look */
-#chat-log::-webkit-scrollbar {
-    width: 8px;
-}
-#chat-log::-webkit-scrollbar-thumb {
-    background-color: #ccc;
-    border-radius: 10px;
-}
+/* Scrollbar styling */
+#chat-log::-webkit-scrollbar { width: 8px; }
+#chat-log::-webkit-scrollbar-thumb { background-color: #ccc; border-radius: 10px; }
 
+
+/* Styling Pesan */
 .pesan-user, .pesan-ai {
     margin-bottom: 12px;
     padding: 12px 15px;
@@ -59,25 +55,37 @@ h1 {
 }
 
 .pesan-user {
-    margin-left: auto;
-    background-color: #1a73e8; /* Biru terang */
+    margin-left: auto; 
+    background-color: #1a73e8; 
     color: white;
     border-top-right-radius: 5px;
-    box-shadow: 0 2px 5px rgba(26, 115, 232, 0.2);
 }
 
 .pesan-ai {
     margin-right: auto;
-    background-color: #e5e7eb; /* Abu-abu sangat muda */
+    background-color: #e5e7eb; 
     color: #374151;
     border: 1px solid #d1d5db;
     border-top-left-radius: 5px;
 }
 
+.hasil-gambar {
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+    margin-top: 5px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    display: block; 
+}
+
+
+/* Area Input (Paling Bawah) */
 .input-area {
     display: flex;
     gap: 10px;
-    padding-top: 10px;
+    padding: 15px; /* Padding di sekitar input */
+    border-top: 1px solid #e0e0e0;
+    background-color: #f7f7f7;
 }
 
 #user-input {
@@ -87,38 +95,29 @@ h1 {
     border-radius: 25px;
     font-size: 1em;
     outline: none;
-    transition: border-color 0.3s;
-}
-
-#user-input:focus {
-    border-color: #1a73e8;
 }
 
 button {
     background-color: #1a73e8;
     color: white;
     border: none;
-    padding: 0 15px; /* Sesuaikan padding */
+    padding: 0 15px; 
     border-radius: 25px;
     cursor: pointer;
     font-weight: 600;
-    transition: background-color 0.3s, transform 0.1s;
-    height: 44px; /* Samakan tinggi dengan input */
+    height: 44px;
 }
 
-button:hover {
-    background-color: #1565c0;
-}
-
-button:active {
-    transform: scale(0.98);
-}
-
-@media (max-width: 480px) {
+/* Media Query untuk Desktop: Jika layar lebih besar, chat box di tengah */
+@media (min-width: 650px) {
     .chat-container {
-        padding: 15px;
-        border-radius: 0; /* Full screen di HP */
-        min-height: 100vh;
-        max-height: none;
+        height: 80vh; /* Tinggi yang lebih wajar di desktop */
+        border-radius: 16px; /* Bulatkan semua sudut */
+        margin-bottom: 5vh;
+        align-self: center; /* Taruh di tengah */
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    }
+    body {
+        align-items: center; /* Taruh di tengah layar */
     }
 }
