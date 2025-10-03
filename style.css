@@ -39,7 +39,7 @@ body {
 /* Styling untuk Logo */
 .header-logo {
     text-align: center;
-    padding: 5px 15px; /* PADDING DIKECILKAN UNTUK MENGGESER LOGO KE ATAS */
+    padding: 5px 150px; /* PADDING DIKECILKAN UNTUK MENGGESER LOGO KE ATAS */
     margin: 0;
     border-bottom: 1px solid #e0e0e0;
     background-color: white; 
