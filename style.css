@@ -52,11 +52,6 @@ h1 {
     padding: 20px;
 }
 
-/* Scrollbar styling */
-#chat-log::-webkit-scrollbar { width: 8px; }
-#chat-log::-webkit-scrollbar-thumb { background-color: #ccc; border-radius: 10px; }
-
-
 /* Styling Pesan */
 .pesan-user, .pesan-ai {
     margin-bottom: 12px;
@@ -83,21 +78,27 @@ h1 {
 }
 
 
-/* --- PERBAIKAN TAMPILAN INPUT ALA GEMINI --- */
+/* --- PERBAIKAN TAMPILAN INPUT ALA GEMINI (RESPONSIVE) --- */
 
 .input-area-gemini {
     display: flex;
     align-items: center;
-    padding: 5px 8px; /* PADDING LUAR DIKECILKAN LAGI */
+    padding: 8px 5px; /* PADDING LUAR DIKECILKAN */
     background-color: #f0f2f5; 
     border-top: 1px solid #e0e0e0;
     width: 100%; 
 }
 
-.gemini-controls, .gemini-action {
+.gemini-controls {
     display: flex;
     align-items: center; 
-    gap: 0px; 
+    padding-right: 5px; /* Jarak antara ikon kiri dan input */
+}
+
+.gemini-action {
+    display: flex;
+    align-items: center;
+    /* PENTING: JANGAN ADA PADDING KIRI DI SINI UNTUK MENGHEMAT RUANG */
 }
 
 /* KOTAK INPUT UTAMA */
@@ -111,7 +112,7 @@ h1 {
     box-shadow: 0 1px 3px rgba(0,0,0,0.1); 
     background-color: white;
     
-    margin: 0 5px; /* MARGIN HORIZONTAL INPUT */
+    margin: 0 5px; /* Jarak horizontal input dikurangi */
     height: 48px;
 }
 
@@ -119,17 +120,17 @@ h1 {
 .icon-btn {
     background: none;
     border: none;
-    color: #4c51bf; 
+    color: #555; 
     cursor: pointer;
-    font-size: 1.1em; /* UKURAN IKON KIRI DIKECILKAN */
-    padding: 6px; /* PADDING IKON KIRI DIKECILKAN */
+    font-size: 1.0em; /* UKURAN IKON KIRI DIKECILKAN LAGI */
+    padding: 5px; /* PADDING IKON KIRI DIKECILKAN LAGI */
     border-radius: 50%; 
     transition: background-color 0.2s;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 35px; /* TINGGI IKON KIRI DIKECILKAN */
-    width: 35px; /* LEBAR IKON KIRI DIKECILKAN */
+    height: 32px; /* UKURAN TOMBOL IKON KIRI DIKECILKAN */
+    width: 32px; 
     flex-shrink: 0; 
 }
 
@@ -145,17 +146,17 @@ h1 {
     height: 48px; 
     width: 48px;
     border-radius: 50%; 
-    margin-right: 5px; 
+    margin-right: 5px; /* Jarak tombol kirim dan mikrofon */
 }
 
 .gemini-action .icon-btn:first-child:hover {
     background-color: #1565c0;
 }
 
-/* Styling Mikrofon (Agar tidak terlalu dominan) */
+/* Styling Mikrofon */
 .mic-btn {
     color: #555; 
-    font-size: 1.2em;
+    font-size: 1.1em; /* UKURAN MIKROFON DIKECILKAN */
     margin-right: 0; 
     width: 35px; 
     height: 35px;
