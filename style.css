@@ -186,4 +186,76 @@ h1 {
         position: static; 
         min-height: 100vh;
     }
+}/* STYLING BARU UNTUK PREVIEW GAMBAR */
+.image-preview-placeholder {
+    position: absolute;
+    right: 5px; /* Posisikan di sebelah kanan input */
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    z-index: 10;
+    padding-right: 5px;
+}
+
+.image-preview-placeholder i.fas.fa-image {
+    color: #4c51bf; /* Warna biru untuk ikon gambar */
+    font-size: 1.2em;
+}
+
+#remove-image {
+    color: #d32f2f; /* Warna merah untuk tombol hapus */
+    cursor: pointer;
+    font-size: 1.1em;
+}
+
+/* KOREKSI INPUT AGAR ADA RUANG UNTUK PREVIEW */
+/* Anda mungkin perlu menyesuaikan padding kanan #user-input di file CSS Anda 
+   agar ikon Mikrofon tidak menimpa ikon preview baru ini. 
+   Pastikan padding kanan #user-input cukup besar (sekitar 80px) */
+   // --- LOGIKA SPEECH-TO-TEXT UNTUK TOMBOL MIKROFON ---
+if ('webkitSpeechRecognition' in window) {
+    const recognition = new webkitSpeechRecognition();
+    
+    // Setel bahasa ke Bahasa Indonesia atau bahasa pilihan lain
+    recognition.lang = 'id-ID'; 
+    recognition.continuous = false; // Berhenti setelah selesai bicara
+    recognition.interimResults = false; // Hanya berikan hasil akhir
+
+    const micButton = document.querySelector('.gemini-controls button:nth-child(2)'); // Tombol Mikrofon di kontrol kiri
+
+    micButton.addEventListener('click', () => {
+        try {
+            recognition.start();
+            micButton.style.color = 'red'; // Indikasi bahwa rekaman dimulai
+            micButton.title = 'Mendengarkan...';
+        } catch (error) {
+            // Error ini sering terjadi jika Anda mengklik terlalu cepat
+            alert("Maaf, perekaman gagal dimulai. Coba lagi.");
+        }
+    });
+
+    recognition.onresult = (event) => {
+        const transcript = event.results[0][0].transcript;
+        userInput.value = transcript; // Masukkan teks ke kolom input
+    };
+
+    recognition.onend = () => {
+        micButton.style.color = '#4c51bf'; // Kembalikan warna biru
+        micButton.title = 'Mikrofon';
+    };
+
+    recognition.onerror = (event) => {
+        micButton.style.color = '#4c51bf';
+        micButton.title = 'Mikrofon';
+        console.error('Speech recognition error', event);
+        if (event.error === 'not-allowed') {
+             alert("Akses mikrofon ditolak. Izinkan akses di pengaturan browser.");
+        }
+    };
+} else {
+    // Beri tahu pengguna jika browser tidak mendukung
+    document.querySelector('.gemini-controls button:nth-child(2)').style.display = 'none';
+    console.log("Web Speech API tidak didukung di browser ini.");
 }
