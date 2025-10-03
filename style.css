@@ -78,12 +78,12 @@ h1 {
 }
 
 
-/* --- TAMPILAN INPUT ALA GEMINI (FINAL KOREKSI RUANG EKSTRA) --- */
+/* --- TAMPILAN INPUT ALA GEMINI (KOREKSI AKHIR UKURAN) --- */
 
 .input-area-gemini {
     display: flex;
     align-items: flex-end; 
-    padding: 8px 3px; /* PADDING LUAR DIKECILKAN KE 3PX */
+    padding: 8px 3px; 
     background-color: #f0f2f5; 
     border-top: 1px solid #e0e0e0;
     width: 100%; 
@@ -92,7 +92,7 @@ h1 {
 .gemini-controls {
     display: flex;
     align-items: center; 
-    padding-right: 3px; /* PADDING KONTROL KIRI DIKECILKAN */
+    padding-right: 3px; 
     flex-shrink: 0; 
 }
 
@@ -135,7 +135,7 @@ h1 {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 35px; 
+    height: 35px; /* UKURAN IKON KIRI DIKECILKAN */
     width: 35px; 
     flex-shrink: 0; 
 }
@@ -158,12 +158,12 @@ h1 {
 .action-send-btn {
     background-color: #1a73e8; 
     color: white;
-    font-size: 1.1em;
-    height: 48px; 
-    width: 48px;
+    font-size: 1.0em; /* FONT ICON DIKECILKAN */
+    height: 40px; /* TINGGI TOMBOL DIKECILKAN DARI 48PX */
+    width: 40px; /* LEBAR TOMBOL DIKECILKAN DARI 48PX */
     border-radius: 50%; 
     flex-shrink: 0;
-    margin-left: 3px; /* MARGIN KIRIM DIKECILKAN KE 3PX */
+    margin-left: 3px; 
 }
 
 .action-send-btn:hover {
