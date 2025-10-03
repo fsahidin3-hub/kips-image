@@ -26,8 +26,8 @@ body {
     border-radius: 16px 16px 0 0; 
     box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.1); 
     width: 100%;
-    max-width: 650px; /* Batas maksimum untuk tampilan desktop */
-    height: 100%; /* Mengisi penuh tinggi body yang sudah di-fix */
+    max-width: 650px; 
+    height: 100%; 
     display: flex;
     flex-direction: column;
     padding: 0;
@@ -36,7 +36,7 @@ body {
     overflow: hidden;
 }
 
-/* Styling untuk Logo (Menggantikan h1) */
+/* Styling untuk Logo */
 .header-logo {
     text-align: center;
     padding: 15px;
@@ -46,7 +46,7 @@ body {
 }
 
 .header-logo img {
-    max-height: 40px; /* Tinggi maksimum logo, sesuaikan jika perlu */
+    max-height: 40px; 
     width: auto;
     vertical-align: middle; 
 }
@@ -92,7 +92,7 @@ body {
 .input-area {
     display: flex;
     gap: 10px;
-    padding: 15px; /* Padding di sekitar input */
+    padding: 15px; 
     border-top: 1px solid #e0e0e0;
     background-color: #f7f7f7;
 }
@@ -120,15 +120,14 @@ button {
 /* Media Query untuk Desktop: Jika layar lebih besar, chat box di tengah */
 @media (min-width: 650px) {
     .chat-container {
-        height: 80vh; /* Tinggi yang lebih wajar di desktop */
-        border-radius: 16px; /* Bulatkan semua sudut */
+        height: 80vh; 
+        border-radius: 16px; 
         margin-bottom: 5vh;
-        align-self: center; /* Taruh di tengah */
+        align-self: center; 
         box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
     }
     body {
-        align-items: center; /* Taruh di tengah layar */
-        /* Hapus properti absolute di desktop agar scroll normal */
+        align-items: center; 
         position: static; 
         min-height: 100vh;
     }
