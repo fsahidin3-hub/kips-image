@@ -36,12 +36,19 @@ body {
     overflow: hidden;
 }
 
-h1 {
+/* Styling untuk Logo (Menggantikan h1) */
+.header-logo {
     text-align: center;
-    color: #1a73e8; 
     padding: 15px;
     margin: 0;
     border-bottom: 1px solid #e0e0e0;
+    background-color: white; 
+}
+
+.header-logo img {
+    max-height: 40px; /* Tinggi maksimum logo, sesuaikan jika perlu */
+    width: auto;
+    vertical-align: middle; 
 }
 
 #chat-log {
