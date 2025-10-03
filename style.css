@@ -78,7 +78,7 @@ h1 {
 }
 
 
-/* --- TAMPILAN INPUT ALA GEMINI --- */
+/* --- TAMPILAN INPUT ALA GEMINI (FINAL) --- */
 
 .input-area-gemini {
     display: flex;
@@ -93,23 +93,34 @@ h1 {
     display: flex;
     align-items: center; 
     padding-right: 5px; 
+    flex-shrink: 0;
+}
+
+/* CONTAINER BARU UNTUK INPUT DAN ICON KANAN */
+.input-wrapper {
+    position: relative;
+    flex-grow: 1;
+    display: flex; 
+    align-items: center;
+    background-color: white;
+    border-radius: 25px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1); 
+    height: 48px;
 }
 
 /* KOTAK INPUT UTAMA */
 #user-input {
     flex-grow: 1;
-    padding: 10px 15px;
+    padding: 10px 85px 10px 15px; /* PADDING KANAN CUKUP BESAR UNTUK DUA IKON DI DALAM */
     border: none;
     border-radius: 25px; 
     font-size: 1em;
     outline: none;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1); 
-    background-color: white;
-    
-    margin: 0 8px 0 5px; /* Margin horizontal input disesuaikan */
+    background-color: transparent; 
     height: 48px;
 }
 
+/* IKON UMUM */
 .icon-btn {
     background: none;
     border: none;
@@ -131,45 +142,31 @@ h1 {
     background-color: #e6e6fa;
 }
 
-/* Styling Tombol Kirim */
-.action-send-btn {
-    background-color: #1a73e8; 
-    color: white;
-    font-size: 1.1em;
-    height: 48px; 
-    width: 48px;
-    border-radius: 50%; 
-    flex-shrink: 0;
-    margin-right: 0; /* Pastikan tombol kirim menempel ke kanan input area */
+/* STYLING TOMBOL KIRIM DAN MIKROFON DI DALAM INPUT */
+.input-send-btn, .mic-btn-inside {
+    position: absolute; 
+    height: 38px;
+    width: 38px;
+    z-index: 5;
 }
 
-.action-send-btn:hover {
-    background-color: #1565c0;
-}
-
-/* STYLING PENTING: TOMBOL MIKROFON DI LUAR (POSISI MENGAMBANG) */
-.mic-btn-outside {
-    position: fixed; /* Membuat posisi tidak terpengaruh scroll */
-    right: 15px; /* Jarak dari kanan */
-    bottom: 75px; /* Jarak dari bawah, di atas input area */
-    z-index: 100; /* Pastikan selalu di atas elemen lain */
-    
-    /* Styling agar terlihat keren */
-    background-color: white;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+.mic-btn-inside {
+    right: 5px; 
     color: #4c51bf;
-    height: 50px;
-    width: 50px;
-    font-size: 1.3em;
 }
 
+.input-send-btn {
+    right: 45px; 
+    color: #1a73e8; 
+    font-size: 1.1em;
+}
 
-/* Media Query untuk Desktop: Hilangkan tombol mikrofon luar di desktop */
+/* Hapus tombol-tombol yang tidak terpakai (karena sudah diganti inline) */
+.action-send-btn, .mic-btn-outside { display: none; }
+
+
+/* Media Query untuk Desktop: Semua harus di tengah dan rapi */
 @media (min-width: 650px) {
-    .mic-btn-outside {
-        display: none; 
-    }
-    
     .chat-container {
         height: 80vh; 
         border-radius: 16px; 
