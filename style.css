@@ -88,7 +88,7 @@ h1 {
 .input-area-gemini {
     display: flex;
     align-items: center;
-    padding: 10px 8px; /* Padding luar dikurangi agar elemen kanan muat */
+    padding: 10px 5px; /* Padding luar dikurangi lagi */
     background-color: #f0f2f5; 
     border-top: 1px solid #e0e0e0;
     width: 100%; 
@@ -97,7 +97,7 @@ h1 {
 .gemini-controls, .gemini-action {
     display: flex;
     align-items: center; 
-    gap: 0px; /* Ikon kiri menempel */
+    gap: 0px; 
 }
 
 /* KOTAK INPUT UTAMA */
@@ -111,8 +111,8 @@ h1 {
     box-shadow: 0 1px 3px rgba(0,0,0,0.1); 
     background-color: white;
     
-    /* MARGIN DIKOREKSI: Jarak kiri dan kanan input dengan ikon */
-    margin: 0 8px; 
+    /* MARGIN DIKOREKSI: Dibuat lebih kecil */
+    margin: 0 5px; 
     height: 48px;
 }
 
@@ -143,10 +143,10 @@ h1 {
     background-color: #1a73e8; 
     color: white;
     font-size: 1.1em;
-    height: 48px; /* Ukuran Tombol Kirim lebih besar */
+    height: 48px; 
     width: 48px;
     border-radius: 50%; 
-    margin-right: 5px; /* Jarak antara tombol kirim dan mikrofon */
+    margin-right: 5px; 
 }
 
 .gemini-action .icon-btn:first-child:hover {
@@ -157,9 +157,8 @@ h1 {
 .mic-btn {
     color: #555; 
     font-size: 1.2em;
-    /* Margin kiri dihapus karena sudah ada di tombol kirim */
     margin-right: 0; 
-    width: 35px; /* Sedikit lebih kecil agar muat */
+    width: 35px; 
     height: 35px;
 }
 
