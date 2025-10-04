@@ -1,6 +1,5 @@
 // ⚠️ GANTI DENGAN KUNCI API GEMINI ANDA
-const GEMINI_API_KEY = "AIzaSyCYuvjJbtA5PL1uanXB30grbicSi3LR5gg";
-const API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=" + GEMINI_API_KEY;
+const PROXY_URL = "https://script.google.com/macros/s/AKfycbwKUw52PqbkGzy-Bq4bdlNbUlIb7ZcfnsfYq-qUg4kq1Un3vJN0gDK9nTfgJxtDqzJhGw/exec";
 
 const chatLog = document.getElementById('chat-log');
 const userInput = document.getElementById('user-input');
