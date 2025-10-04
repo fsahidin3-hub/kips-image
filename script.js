@@ -1,5 +1,5 @@
 // ⚠️ PROXY URL FINAL ANDA (SUDAH DIPERBAIKI)
-const PROXY_URL = "https://script.google.com/macros/s/AKfycbwrySa1PsF_-qg-f4ddoqO_kyO5H_JZePw4bbI5LFTCiMopIJvx8e0fHojyY0w9F5e8/exec"; 
+const PROXY_URL = const PROXY_URL = "https://script.google.com/macros/s/AKfycbz6GCDdmni-atHh9v35AbWhHaDhR2IvJMdkBOfSuIWG6s2Y4KuJrhrooMpqB2akj8ey/exec"; 
 
 const chatLog = document.getElementById('chat-log');
 const userInput = document.getElementById('user-input');
