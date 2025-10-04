@@ -1,5 +1,5 @@
-// ⚠️ GANTI DENGAN URL DEPLOYMENT APPS SCRIPT ANDA (URL /exec)
-const PROXY_URL = "https://script.google.com/macros/s/AKfycbyD_dG3kuG1m0d3cw4-z8Av5DnATwKXDHKVe_jwFFODShJRM2H6hrWfCxvxy7Vtb4M1/exec"; 
+// ⚠️ PROXY URL FINAL ANDA (SUDAH DIPERBAIKI)
+const PROXY_URL = "https://script.google.com/macros/s/AKfycbwrySa1PsF_-qg-f4ddoqO_kyO5H_JZePw4bbI5LFTCiMopIJvx8e0fHojyY0w9F5e8/exec"; 
 
 const chatLog = document.getElementById('chat-log');
 const userInput = document.getElementById('user-input');
@@ -31,12 +31,14 @@ async function kirimPesan() {
         chatLog.removeChild(loadingPesan);
 
         if (balasan.startsWith('IMAGE_URL:')) { 
-            // PENTING: Mendeteksi dan Menampilkan Gambar
+            // Menampilkan Gambar dari Google Search
             const imageUrl = balasan.replace('IMAGE_URL:', '');
             tampilkanGambar(imageUrl, pesan); 
         } else if (balasan.startsWith('ERROR_') || balasan.includes('Gagal')) {
-            // Menangani error dari Apps Script
-            tampilkanPesan(`Terjadi kesalahan koneksi atau di server: ${balasan}`, 'ai');
+            // Menampilkan pesan error spesifik dari Apps Script
+            tampilkanPesan(`SERVER ERROR: Terjadi kesalahan di server.`, 'ai');
+        } else if (balasan === 'TIDAK ADA GAMBAR') {
+             tampilkanPesan(`Maaf, Google Search tidak menemukan gambar yang relevan.`, 'ai');
         } else {
             // Teks biasa dari Gemini
             tampilkanPesan(balasan, 'ai'); 
@@ -44,11 +46,20 @@ async function kirimPesan() {
 
     } catch (error) {
         console.error("Kesalahan koneksi:", error);
-        loadingPesan.innerText = "Maaf, terjadi kesalahan koneksi. Coba lagi.";
-    } 
+        loadingPesan.innerText = "Maaf, terjadi kesalahan koneksi. (Pastikan URL proxy sudah benar dan di-deploy).";
+    } finally {
+        // Reset status unggah file setelah pengiriman
+        resetImageUpload();
+    }
 }
 
 // --- FUNGSI PEMBANTU ---
+
+function resetImageUpload() {
+    uploadedImageBase64 = null;
+    if (fileInput) fileInput.value = '';
+    if (imagePreview) imagePreview.style.display = 'none';
+}
 
 function tampilkanPesan(teks, pengirim) {
     const elemenPesan = document.createElement('div');
@@ -63,7 +74,6 @@ function tampilkanGambar(urlGambar, promptText) {
     const elemenPesan = document.createElement('div');
     elemenPesan.classList.add('pesan-ai'); 
     
-    // Tambahkan label gambar
     const label = document.createElement('div');
     label.innerText = `Hasil Gambar untuk: "${promptText}"`;
     label.style.marginBottom = '5px';
@@ -71,7 +81,6 @@ function tampilkanGambar(urlGambar, promptText) {
     label.style.color = '#374151';
     elemenPesan.appendChild(label);
 
-    // Tambahkan elemen gambar
     const imgElement = document.createElement('img');
     imgElement.src = urlGambar;
     imgElement.alt = promptText;
@@ -88,13 +97,13 @@ function tampilkanGambar(urlGambar, promptText) {
 
 // --- EVENT LISTENERS (Tombol dan Input) ---
 document.addEventListener('DOMContentLoaded', () => {
-    // Tombol Kirim (Paper plane)
     const actionSendButton = document.querySelector('.action-send-btn');
+    const userInput = document.getElementById('user-input');
+
     if (actionSendButton) {
         actionSendButton.addEventListener('click', kirimPesan);
     }
     
-    // Listener Enter
     userInput.addEventListener('keypress', function(e) {
         if (e.key === 'Enter') {
             kirimPesan();
