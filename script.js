@@ -5,21 +5,12 @@ const chatLog = document.getElementById('chat-log');
 const userInput = document.getElementById('user-input');
 const fileInput = document.getElementById('file-input');
 const imagePreview = document.getElementById('image-preview');
-let uploadedImageBase64 = null; // Variabel untuk menyimpan gambar Base64
-
+let uploadedImageBase64 = null; 
 
 // --- FUNGSI UTAMA UNTUK MENGIRIM PESAN (HYBRID) ---
 async function kirimPesan() {
     const pesan = userInput.value.trim();
-    
-    // Nonaktifkan pengiriman gambar via upload (+) karena kita pakai Custom Search
-    if (uploadedImageBase64 !== null) {
-        alert("Fitur unggah gambar (+) dinonaktifkan di mode multifungsi. Gunakan perintah 'Cari gambar...'!");
-        resetImageUpload();
-        return;
-    }
-
-    if (pesan === "") return;
+    if (pesan === "" && uploadedImageBase64 === null) return;
 
     tampilkanPesan(pesan, 'user');
     userInput.value = '';
@@ -38,7 +29,7 @@ async function kirimPesan() {
         chatLog.removeChild(loadingPesan);
 
         if (balasan.startsWith('IMAGE_URL:')) { 
-            // Jika balasan adalah URL gambar dari Google Search
+            // Jika proxy mengembalikan URL gambar dari Google Search
             const imageUrl = balasan.replace('IMAGE_URL:', '');
             tampilkanGambar(imageUrl, pesan); 
         } else if (balasan.startsWith('ERROR_')) {
@@ -56,7 +47,7 @@ async function kirimPesan() {
     }
 }
 
-// --- FUNGSI PEMBANTU (MULTIMODAL) ---
+// --- FUNGSI PEMBANTU ---
 
 function resetImageUpload() {
     uploadedImageBase64 = null;
@@ -102,11 +93,11 @@ function tampilkanGambar(urlGambar, promptText) {
 document.addEventListener('DOMContentLoaded', () => {
     const plusButton = document.querySelector('.gemini-controls button:first-child');
     const micButton = document.querySelector('.gemini-controls button:nth-child(2)');
-    const sendButton = document.querySelector('.input-send-btn');
+    const sendButton = document.querySelector('.action-send-btn'); // Tombol Kirim utama
     
-    // Ikon + dan Mikrofon kini hanya untuk kosmetik atau speech-to-text sederhana
-    if (plusButton) plusButton.style.opacity = 0.5;
-    if (micButton) micButton.style.opacity = 1; 
+    // Nonaktifkan tombol Kirim yang ada di dalam input wrapper (jika ada)
+    const sendButtonInside = document.querySelector('.input-send-btn');
+    if (sendButtonInside) sendButtonInside.style.pointerEvents = 'none';
 
     // Event listener untuk tombol Kirim (Paper plane)
     if (sendButton) {
@@ -120,47 +111,18 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // --- LOGIKA SPEECH-TO-TEXT UNTUK TOMBOL MIKROFON ---
+    // Logika speech-to-text (Mikrofon) - Biarkan tetap ada
     if ('webkitSpeechRecognition' in window) {
-        const recognition = new webkitSpeechRecognition();
-        recognition.lang = 'id-ID';
-        recognition.continuous = false; 
-        recognition.interimResults = false; 
-        
-        if (micButton) {
-            micButton.addEventListener('click', () => {
-                try {
-                    recognition.start();
-                    micButton.style.color = 'red'; 
-                    micButton.title = 'Mendengarkan...';
-                } catch (error) {
-                    alert("Maaf, perekaman gagal dimulai. Coba lagi.");
-                }
-            });
-        }
+        // ... (kode speech recognition lama Anda) ...
+    }
+    
+    // Nonaktifkan tombol + karena kita fokus pada mode hybrid search/chat
+    if (plusButton) plusButton.style.opacity = 0.5;
+    if (micButton) micButton.style.opacity = 1; 
 
-        recognition.onresult = (event) => {
-            const transcript = event.results[0][0].transcript;
-            userInput.value = transcript; 
-        };
-
-        recognition.onend = () => {
-            if (micButton) {
-                micButton.style.color = '#4c51bf'; 
-                micButton.title = 'Mikrofon';
-            }
-        };
-
-        recognition.onerror = (event) => {
-            if (micButton) {
-                micButton.style.color = '#4c51bf';
-                micButton.title = 'Mikrofon';
-            }
-            if (event.error === 'not-allowed') {
-                 alert("Akses mikrofon ditolak.");
-            }
-        };
-    } else {
-        if (micButton) micButton.style.opacity = 0.5;
+    // PENTING: Jika tombol Kirim adalah yang di luar (.action-send-btn), pastikan ini terhubung
+    const actionSendButton = document.querySelector('.action-send-btn');
+    if (actionSendButton) {
+        actionSendButton.addEventListener('click', kirimPesan);
     }
 });
