@@ -1,5 +1,5 @@
 // ⚠️ GANTI DENGAN KUNCI API GEMINI ANDA
-const PROXY_URL = "https://script.google.com/macros/s/AKfycbwKUw52PqbkGzy-Bq4bdlNbUlIb7ZcfnsfYq-qUg4kq1Un3vJN0gDK9nTfgJxtDqzJhGw/exec";
+const PROXY_URL = "https://script.google.com/macros/s/AKfycbzggyFxa-B2sZEtmdAlJV2IeG8tldO0xpeyuvt59cdP55BnZNICORJf31wyQoKWabA6yA/exec";
 
 const chatLog = document.getElementById('chat-log');
 const userInput = document.getElementById('user-input');
